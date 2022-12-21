@@ -24,16 +24,19 @@ void SceneMain::end()
 
 SceneBase* SceneMain::update()
 {
+	//　１ボタン
 	if (CheckHitKey(KEY_INPUT_1))
 	{
 		Stage = 1;
 	}
 	
+	//　２ボタン
 	if (CheckHitKey(KEY_INPUT_2))
 	{
 		Stage = 2;
 	}
 
+	//　バックスペース
 	if (CheckHitKey(KEY_INPUT_BACK))
 	{
 		Stage = 5;
@@ -57,12 +60,13 @@ SceneBase* SceneMain::update()
 
 void SceneMain::draw()
 {
-	SetFontSize(24);
+	SetFontSize(30);
+	int m_waitFrame = 0;
 	
 	if (Stage == 0)
 	{
-		DrawFormatString(100, 150, GetColor(0, 0, 255),
-			"問１ → ①ボダン　　問２ → ②ボダン");
+		DrawFormatString(40, 150, GetColor(0, 0, 255),
+			"問１ → ①ボタン　　問２ → ②ボタン");
 	}
 
 	

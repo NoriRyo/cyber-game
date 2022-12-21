@@ -1,12 +1,9 @@
+// 問１
+
 #include "Quiz1.h"
 #include "DxLib.h"
 #include "Pad.h"
 #include "SceneMain.h"
-
-namespace
-{
-	//constexpr int kWaitFrame = 90;
-}
 
 Quiz1::Quiz1()
 {
@@ -29,6 +26,7 @@ void Quiz1::init()
 	
 }
 
+// スペースを押したときの対応処理
 void Quiz1::update()
 {
 	if (m_textCount == 2)
@@ -63,10 +61,12 @@ void Quiz1::update()
 
 void Quiz1::draw()
 {
-	DrawFormatString(0, 0, GetColor(0, 255, 255),
+	DrawFormatString(0, 0, GetColor(30, 144, 255),
 		"問１");
-	DrawFormatString(20, 420, GetColor(0, 255, 255),
+	DrawFormatString(20, 420, GetColor(30, 144, 255),
 		"スペースキーで止めよう！");
+
+	// コメント
 	SetFontSize(18);
 	if (m_textCount == 1)
 	{
@@ -84,14 +84,17 @@ void Quiz1::draw()
 		DrawString(0, 60, " カチッ・・あれ？", GetColor(255, 255, 255));
 		DrawString(0, 80, " 10万円...？", GetColor(255, 255, 255));
 	}
+	// 問が終わったときの処理
 	if (m_textCount >= 4)
 	{
+		m_textNum = 0;
 		DrawFormatString(100, 150, GetColor(0, 0, 255),
 			"戻る → BACKSPACE　　問２ → ②ボダン");
-		//DrawString(0, 80, "10万円...？", GetColor(255, 255, 255));
 	}
 	SetFontSize(24);
 	ChangeFont("ＭＳ ゴシック");
+
+	//	スペースを押したときの警告
 	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
 		if (m_textCount == 1)
@@ -109,15 +112,14 @@ void Quiz1::draw()
 		if (m_textCount == 3)
 		{
 			DrawString(32, 210, "アウト", GetColor(255, 0, 0));
-			//WaitKey();
-
 			return;
 		}
-		//m_waitFrame = 300;
 	}
 	
+	//　テキストを表示
 	DrawGraph(200, 0, m_textNum, false);
 
+	//　カウント
 	if (m_waitFrame > 0)
 	{
 		clsDx();
